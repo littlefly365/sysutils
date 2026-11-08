@@ -13,4 +13,7 @@
 
 #define __dead
 
+#define __COPYRIGHT(x)
+#define __RCSID(x)
+
 #endif
