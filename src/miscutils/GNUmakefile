@@ -1,4 +1,4 @@
-SUBDIR=c11 c17 c89 c99 domainname getopt machine unvis vis
+SUBDIR=c11 c17 c89 c99 domainname getopt machine primes unvis vis
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
