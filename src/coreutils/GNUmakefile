@@ -1,4 +1,4 @@
-SUBDIR=false logname sync true
+SUBDIR=false hostname logname sync true
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
