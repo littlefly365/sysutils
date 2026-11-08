@@ -1,4 +1,4 @@
-SUBDIR=machine unvis
+SUBDIR=machine unvis vis
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :

@@ -1,0 +1,13 @@
+--- vis.c	2026-11-08 18:07:40.668204913 -0500
++++ vis.c	2026-11-08 18:07:52.522620581 -0500
+@@ -134,8 +134,8 @@
+ 		case '?':
+ 		default:
+ 			(void)fprintf(stderr, 
+-			    "Usage: %s [-bcfhlMmNnoSstw] [-e extra]" 
+-			    " [-F foldwidth] [file ...]\n", getprogname());
++			    "Usage: vis [-bcfhlMmNnoSstw] [-e extra]" 
++			    " [-F foldwidth] [file ...]\n");
+ 			return 1;
+ 		}
+ 
