@@ -1,4 +1,4 @@
-SUBDIR=miscutils
+SUBDIR=coreutils miscutils
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
