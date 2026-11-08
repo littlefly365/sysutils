@@ -1,4 +1,4 @@
-SUBDIR=machine unvis vis
+SUBDIR=c11 c17 c89 c99 getopt machine unvis vis
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
