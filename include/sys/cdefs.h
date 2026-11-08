@@ -11,4 +11,6 @@
 #define __arraycount(a)	(sizeof(a) / sizeof(*(a)))
 #endif
 
+#define __dead
+
 #endif

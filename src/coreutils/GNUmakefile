@@ -1,4 +1,4 @@
-SUBDIR=false true
+SUBDIR=false logname true
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
