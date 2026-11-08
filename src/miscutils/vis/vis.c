@@ -134,8 +134,8 @@ main(int argc, char *argv[])
 		case '?':
 		default:
 			(void)fprintf(stderr, 
-			    "Usage: vis [-bcfhlMmNnoSstw] [-e extra]" 
-			    " [-F foldwidth] [file ...]\n");
+			    "Usage: %s [-bcfhlMmNnoSstw] [-e extra]" 
+			    " [-F foldwidth] [file ...]\n", getprogname());
 			return 1;
 		}
 

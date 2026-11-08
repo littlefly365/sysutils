@@ -56,6 +56,7 @@ main(int argc, char *argv[])
 	FILE *fp;
 	int ch, eflags = 0;
 
+	setprogname(argv[0]);
 	while ((ch = getopt(argc, argv, "eHhm")) != -1)
 		switch((char)ch) {
 		case 'e':
@@ -73,7 +74,8 @@ main(int argc, char *argv[])
 		case '?':
 		default:
 			(void)fprintf(stderr,
-			    "Usage: unvis [-e] [-Hh | -m] [file...]\n");
+			    "Usage: %s [-e] [-Hh | -m] [file...]\n",
+			    getprogname());
 			return EXIT_FAILURE;
 		}
 	argc -= optind;
