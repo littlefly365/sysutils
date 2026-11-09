@@ -1,4 +1,4 @@
-SUBDIR=cat echo factor false hostname logname sync true
+SUBDIR=base64 cat echo factor false hostname logname sync true
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
