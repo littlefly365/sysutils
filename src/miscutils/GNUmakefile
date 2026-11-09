@@ -1,4 +1,5 @@
-SUBDIR=banner c11 c17 c89 c99 domainname getopt machine primes sw_vers unvis vis
+SUBDIR=	banner c11 c17 c89 c99 calendar domainname getopt machine \
+	primes sw_vers unvis vis
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
