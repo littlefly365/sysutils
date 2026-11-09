@@ -3,19 +3,9 @@
 
 #include_next <stdlib.h>
 
-extern const char *__progname;
-
-static const char *
-getprogname(void)
-{
-	return __progname;
-}
-
-static void
-setprogname(const char *progname)
-{
-}
-
-int reallocarr(void *ptr, size_t number, size_t size);
+const char *getprogname(void);
+void setprogname(const char *);
+int reallocarr(void *, size_t, size_t);
+long long strtonum(const char *, long long, long long, const char **);
 
 #endif

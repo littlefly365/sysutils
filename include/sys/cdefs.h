@@ -13,6 +13,7 @@
 
 #define __dead
 
+#define __UNCONST(a)	((void *)(unsigned long)(const void *)(a))
 #define __COPYRIGHT(x)
 #define __RCSID(x)
 
