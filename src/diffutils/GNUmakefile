@@ -1,4 +1,4 @@
-SUBDIR=cmp
+SUBDIR=cmp diff
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :

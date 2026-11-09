@@ -16,4 +16,6 @@ setprogname(const char *progname)
 {
 }
 
+int reallocarr(void *ptr, size_t number, size_t size);
+
 #endif

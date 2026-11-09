@@ -12,3 +12,14 @@ errc(int eval, int code, const char *fmt, ...)
 	verr(eval, fmt, ap);
 	va_end(ap);
 }
+
+void
+warnc(int code, const char *fmt, ...)
+{
+	va_list ap;
+
+	va_start(ap, fmt);
+	errno = code;
+	vwarn(fmt, ap);
+	va_end(ap);
+}
