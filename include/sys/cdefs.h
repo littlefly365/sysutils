@@ -14,6 +14,7 @@
 #define __dead
 
 #define __UNCONST(a)	((void *)(unsigned long)(const void *)(a))
+#define __printflike(fmtarg, firstvararg)	__attribute__((__format__ (__printf__, fmtarg, firstvararg)))
 #define __COPYRIGHT(x)
 #define __RCSID(x)
 
