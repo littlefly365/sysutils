@@ -1,0 +1,107 @@
+.\"
+.\" Copyright (c) Apple, Inc
+.\" Adapted for SysUtils.
+.\"
+.Dd November 09, 2026
+.Dt SW_VERS 1
+.Os
+.Sh NAME
+.Nm sw_vers
+.Nd print system version information
+.Sh SYNOPSIS
+.Nm
+.Op Fl --productName | --productVersion | --productVersionExtra | --buildVersion
+.Sh DESCRIPTION
+.Nm
+prints system version information for the currently running operating system on the local machine.
+
+When invoked without options,
+.Nm
+prints a short list of version properties:
+.Bd -literal -offset indent
+% sw_vers
+ProductName:              Ubuntu
+ProductVersion:           26.10
+ProductVersionExtra:      (a)
+BuildVersion:             26A100
+
+.Ed
+The
+.Sy ProductName
+property provides the name of the operating system release .
+The
+.Sy ProductVersion
+property defines the version of the operating system release (for example,
+.Sy 24.04
+or
+.Sy 26.10 ) .
+The
+.Sy ProductVersionExtra
+property
+is always set to
+.Sy (a)
+for compatibility with the macOS implementation .
+The
+.Sy BuildVersion
+property provides the specific revision of the operating system as assigned by the build system.
+.Sh OPTIONS
+The output of
+.Nm
+can be refined by the following options.
+These long-form options can also be passed in lowercase for convenience.
+.Bl -tag -width Ds
+.It Fl --productName
+Print only the value of the
+.Sy ProductName
+property.
+.It Fl --productVersion
+Print only the value of the
+.Sy ProductVersion
+property.
+.It Fl --productVersionExtra
+Print only the value of the
+.Sy ProductVersionExtra
+property.
+.It Fl --buildVersion
+Print only the value of the
+.Sy BuildVersion
+property.
+.El
+.Sh EXAMPLES
+Print the product name:
+.Bd -literal -offset indent
+% sw_vers --productName
+Ubuntu
+.Ed
+.Pp
+Print the product version:
+.Bd -literal -offset indent
+% sw_vers --productVersion
+26.10
+.Ed
+.Pp
+Print the product version extra:
+.Bd -literal -offset indent
+% sw_vers --productVersionExtra
+(a)
+.Ed
+.Pp
+Print the build version:
+.Bd -literal -offset indent
+% sw_vers --buildVersion
+26A100
+.Ed
+.Sh COMPATIBILITY
+.Nm
+is backwards compatible with previous versions which expect options passed with a single dash, as in:
+.Bd -literal -offset indent
+% sw_vers -productName
+.Ed
+.Sh FILES
+.Bl -tag -width Ds
+.It Pa /etc/os-release
+Contains the operating system identification and version information.
+.El
+.Sh SEE ALSO
+.Xr uname 1 ,
+.Xr machine 1
