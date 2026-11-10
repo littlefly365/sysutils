@@ -1,4 +1,4 @@
-SUBDIR=	banner c11 c17 c89 c99 cal calendar domainname getopt \
+SUBDIR=	banner c11 c17 c89 c99 cal calendar col domainname getopt \
 	machine primes sw_vers unvis vis
 
 all:
