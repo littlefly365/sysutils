@@ -1,5 +1,6 @@
 LIB=libcompat.a
-SRCS=errc.c fgetln.c fparseln.c progname.c reallocarr.c setmode.c strtonum.c unvis.c vis.c
+SRCS=	errc.c fgetln.c fparseln.c getbsize.c humanize_number.c progname.c reallocarr.c \
+	setmode.c strtonum.c unvis.c vis.c
 OBJS=$(SRCS:.c=.o)
 
 all: $(OBJS)

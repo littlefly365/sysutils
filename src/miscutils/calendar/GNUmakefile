@@ -16,7 +16,7 @@ install:
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/$(MAN)
 	@$(foreach _C_,$(CALENDARS), \
-		install -Dm 644 ./calendars/$(_C_) $(DESTDIR)$(PREFIX)/share/calendars/$(_C_)) :
+		install -Dm 644 ./calendars/$(_C_) $(DESTDIR)$(PREFIX)/share/calendars/$(_C_);)
 clean:
 	rm -rf $(OBJS) $(TARGET)
 .PHONY: all install clean

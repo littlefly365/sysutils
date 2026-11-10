@@ -1,5 +1,6 @@
-SUBDIR=	base64 basename cat dirname du echo factor false hostname \
-	link logname mkdir realpath sync test true uname unlink
+SUBDIR=	base64 basename cat dirname du echo env factor false \
+	hostname link logname mkdir printenv realpath sync test \
+	true uname unlink
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :

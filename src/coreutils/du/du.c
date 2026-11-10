@@ -202,10 +202,6 @@ main(int argc, char *argv[])
 				/* nothing */
 				break;
 			default:
-				if (p->fts_statp->st_flags & UF_NODUMP) {
-					fts_set(fts, p, FTS_SKIP);
-					continue;
-				}
 			}
 		}
 		switch (p->fts_info) {
