@@ -11,8 +11,9 @@ $(TARGET): $(OBJS)
 	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS)
 install:
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
-	ln -sf $(TARGET) $(DESTDIR)$(PREFIX)/bin/[
 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/$(MAN)
+	ln -sf $(TARGET) $(DESTDIR)$(PREFIX)/bin/[
+	ln -sf $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/[.1
 clean:
 	rm -rf $(OBJS) $(TARGET)
 .PHONY: all install clean
