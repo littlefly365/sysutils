@@ -38,19 +38,17 @@
 int
 GetSystemInfo(SystemInfo_t *info)
 {
-#ifdef __linux__
 	FILE *fp;
 	size_t len = 0;
 	char *line = NULL;
-#endif
 	struct utsname uts;
+
 	if (uname(&uts) != 0)
 		return -1;
 
 	strlcpy(info->ProductVersionExtra, "(a)", INFOSIZE);
 	strlcpy(info->BuildVersion, _BUILDID, INFOSIZE);
 
-#ifdef __linux__
 	char distro[INFOSIZE];
 	char version[INFOSIZE];
 
@@ -85,19 +83,19 @@ GetSystemInfo(SystemInfo_t *info)
 				*p = '\0';
 		}
 
-		strlcpy(info->ProductName, d, INFOSIZE);
-		if (version[0] == '\0')
-			strlcpy(info->ProductVersion, uts.release, INFOSIZE);
-		else
-			strlcpy(info->ProductVersion, v, INFOSIZE);
-
 		if (line)
 			free(line);
+
+		if (*d == '\0' || *v == '\0')
+			goto fallback;
+
+		strlcpy(info->ProductName, d, INFOSIZE);
+		strlcpy(info->ProductVersion, v, INFOSIZE);
 
 		return 0;
 	}
 
-#endif
+fallback:
 	strlcpy(info->ProductName, uts.sysname, INFOSIZE);
 	strlcpy(info->ProductVersion, uts.release, INFOSIZE);
 	return 0;
@@ -110,13 +108,13 @@ GetOption(char *arg, enum option *opt)
 
 	if (arg == NULL)
 		*opt = PRINT_ALL;
-	else if (!strcmp(arg, "-productName") || !strcmp(arg, "--productName"))
+	else if (!strcasecmp(arg, "-productName") || !strcasecmp(arg, "--productName"))
 		*opt = PRINT_NAME;
-	else if (!strcmp(arg, "-productVersion") || !strcmp(arg, "--productVersion"))
+	else if (!strcasecmp(arg, "-productVersion") || !strcasecmp(arg, "--productVersion"))
 		*opt = PRINT_VERSION;
-	else if (!strcmp(arg, "--productVersionExtra"))
+	else if (!strcasecmp(arg, "--productVersionExtra"))
 		*opt = PRINT_VERSION_EXTRA;
-	else if (!strcmp(arg, "-buildVersion") || !strcmp(arg, "--buildVersion"))
+	else if (!strcasecmp(arg, "-buildVersion") || !strcasecmp(arg, "--buildVersion"))
 		*opt = PRINT_BUILD_VERSION;
 
 	return (*opt == UNKNOWN_OPT);
