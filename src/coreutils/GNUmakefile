@@ -1,4 +1,4 @@
-SUBDIR=	base64 basename cat dirname echo factor false hostname \
+SUBDIR=	base64 basename cat dirname du echo factor false hostname \
 	link logname mkdir realpath sync test true uname unlink
 
 all:
