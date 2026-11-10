@@ -1,4 +1,5 @@
-SUBDIR=base64 cat echo factor false hostname logname mkdir sync test true uname
+SUBDIR=	base64 cat echo factor false hostname link logname \
+	mkdir sync test true uname unlink
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
