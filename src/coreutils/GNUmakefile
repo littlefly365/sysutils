@@ -1,5 +1,5 @@
 SUBDIR=	base64 basename cat chmod chown chroot comm cut dirname \
-	du echo env factor false hostname link logname mkdir \
+	du echo env expr factor false hostname link logname mkdir \
 	mkfifo mknod mktemp paste printenv pwd realpath rmdir \
 	sleep stat sync test true tty uname unlink users wc \
 	who yes
