@@ -1,7 +1,7 @@
-SUBDIR=	base64 basename cat chmod chown chroot dirname du echo \
-	env factor false hostname link logname mkdir mkfifo mknod \
-	mktemp printenv pwd realpath rmdir sleep stat sync \
-	test true uname unlink
+SUBDIR=	base64 basename cat chmod chown chroot cut dirname du \
+	echo env factor false hostname link logname mkdir mkfifo \
+	mknod mktemp printenv pwd realpath rmdir sleep stat sync \
+	test true tty uname unlink
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
