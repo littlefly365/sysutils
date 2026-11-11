@@ -1,6 +1,7 @@
 // from src/lib/libutil/efun.c (NetBSD)
 
 #include <stdlib.h>
+#include <string.h>
 #include <util.h>
 #include <err.h>
 
@@ -31,4 +32,13 @@ erealloc(void *p, size_t n)
 	if (q == NULL && n != 0)
 		(*efunc)(1, "Cannot re-allocate %zu bytes", n);
 	return q;
+}
+
+char *
+estrndup(const char *s, size_t len)
+{
+	char *d = strndup(s, len);
+	if (d == NULL)
+		(*efunc)(1, "Cannot copy string");
+	return d;
 }
