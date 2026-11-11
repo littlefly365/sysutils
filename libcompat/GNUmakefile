@@ -1,7 +1,7 @@
 LIB=libcompat.a
 SRCS=	efun.c errc.c fgetln.c fgetwln.c fparseln.c getbsize.c \
 	humanize_number.c progname.c pwcache.c reallocarr.c \
-	setmode.c strmode.c strtonum.c unvis.c vis.c
+	setmode.c signames.c strmode.c strtonum.c unvis.c vis.c
 OBJS=$(SRCS:.c=.o)
 
 all: $(OBJS)
