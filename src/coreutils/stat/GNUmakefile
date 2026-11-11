@@ -1,7 +1,7 @@
 TARGET = stat
 SRCS = stat.c
 OBJS = $(SRCS:.c=.o)
-MANS = stat.1 readlink
+MANS = stat.1 readlink.1
 
 all: $(TARGET)
 

@@ -1,5 +1,5 @@
 SUBDIR=	banner c11 c17 c89 c99 cal calendar col domainname flock \
-	getopt machine primes sw_vers unvis vis
+	getopt machine primes sw_vers unvis vis whereis
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
