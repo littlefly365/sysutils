@@ -199,7 +199,7 @@ getutentries(const char *fname, struct utmpentry **epp)
 #ifdef SUPPORT_UTMPX
 	setutxent();
 	while ((what & 1) && (utx = getutxent()) != NULL) {
-		if (fname == NULL && ((1 << utx->ut_type) & etype) == 0)
+		if (((1 << utx->ut_type) & etype) == 0)
 			continue;
 		if ((ep = calloc(1, sizeof(*ep))) == NULL) {
 			warn(NULL);
@@ -215,6 +215,9 @@ getutentries(const char *fname, struct utmpentry **epp)
 	setutent();
 	if ((etype & (1 << USER_PROCESS)) != 0) {
 		while ((what & 2) && (ut = getutent()) != NULL) {
+			if (ut->ut_type != USER_PROCESS)
+				continue;
+
 			if (fname == NULL && (*ut->ut_name == '\0' ||
 			    *ut->ut_line == '\0'))
 				continue;
