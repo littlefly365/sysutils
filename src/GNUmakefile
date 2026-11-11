@@ -1,4 +1,4 @@
-SUBDIR=coreutils diffutils miscutils patch
+SUBDIR=coreutils diffutils miscutils patch sed
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
