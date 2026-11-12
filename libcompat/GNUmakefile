@@ -1,15 +1,18 @@
 LIB=libcompat.a
 SRCS=	efun.c errc.c fgetln.c fgetwln.c fparseln.c getbsize.c \
-	humanize_number.c progname.c pwcache.c reallocarr.c \
-	setmode.c signames.c strmode.c strtonum.c unvis.c vis.c
+	humanize_number.c parsedate.c progname.c pwcache.c \
+	reallocarr.c setmode.c signames.c strmode.c strtonum.c \
+	unvis.c vis.c
 OBJS=$(SRCS:.c=.o)
 
 all: $(OBJS)
 	ar rcs $(LIB) $(OBJS)
 %.o: %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS) -D'_DIAGASSERT(x)='
+parsedate.c: parsedate.y
+	$(YACC) -o $@ $<
 install:
 
 clean:
-	rm -rf $(OBJS) $(LIB)
+	rm -rf parsedate.c $(OBJS) $(LIB)
 .PHONY: all install clean

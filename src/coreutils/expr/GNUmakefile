@@ -11,7 +11,7 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS)
 $(SRCS): $(YSRCS)
-	yacc -o $@ $<
+	$(YACC) -o $@ $<
 install:
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/$(MAN)
