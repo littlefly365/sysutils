@@ -14,7 +14,7 @@ install:
 	ln -sf $(TARGET) $(DESTDIR)$(PREFIX)/bin/groups
 	ln -sf $(TARGET) $(DESTDIR)$(PREFIX)/bin/whoami
 	@$(foreach m,$(MANS), \
-		install -Dm 644 $(m) $(DESTDIR)$(PREFIX)/share/man/man1/$(m))
+		install -Dm 644 $(m) $(DESTDIR)$(PREFIX)/share/man/man1/$(m);)
 clean:
 	rm -rf $(OBJS) $(TARGET)
 .PHONY: all install clean
