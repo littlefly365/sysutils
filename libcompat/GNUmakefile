@@ -10,7 +10,7 @@ all: $(OBJS)
 %.o: %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS) -D'_DIAGASSERT(x)='
 parsedate.c: parsedate.y
-	$(YACC) -o $@ $<
+	byacc -o $@ $<
 install:
 
 clean:

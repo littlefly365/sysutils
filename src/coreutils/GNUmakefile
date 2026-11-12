@@ -1,7 +1,7 @@
 SUBDIR=	base64 basename cat chmod chown chroot comm csplit cut \
-	dir dirname du echo env expr factor false hostname link \
-	logname mkdir mkfifo mknod mktemp paste printenv pwd \
-	realpath rmdir sleep split stat sync tee test touch \
+	dir dirname du echo env expr factor false hostname id \
+	link logname mkdir mkfifo mknod mktemp paste printenv \
+	pwd realpath rmdir sleep split stat sync tee test touch \
 	tr true tty uname uniq unlink users vdir wc who yes
 
 all:
