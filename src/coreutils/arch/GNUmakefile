@@ -1,5 +1,5 @@
-TARGET = machine
-SCRIPT = machine.sh
+TARGET = arch
+SCRIPT = arch.sh
 MAN = machine.1
 
 all:
@@ -7,7 +7,7 @@ all:
 install:
 	install -Dm 755 $(SCRIPT) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/$(MAN)
-	ln -sf $(TARGET) $(DESTDIR)$(PREFIX)/bin/arch
+	ln -sf $(TARGET) $(DESTDIR)$(PREFIX)/bin/machine
 clean:
 
 .PHONY: all install clean

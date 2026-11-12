@@ -1,5 +1,5 @@
 SUBDIR=	banner c11 c17 c89 c99 cal calendar col colcrt colrm column \
-	domainname flock getopt machine primes rev sw_vers unvis vis \
+	domainname flock getopt primes rev sw_vers unvis vis \
 	whereis
 
 all:
