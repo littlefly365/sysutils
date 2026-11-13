@@ -1,0 +1,37 @@
+--- date/date.c	2026-11-12 20:55:46.792662320 -0500
++++ date/date.c	2026-11-12 21:33:19.288536915 -0500
+@@ -349,7 +349,7 @@
+ static void
+ setthetime(const char *p)
+ {
+-	struct timeval tv;
++	struct timeval tv, utx_tv;
+ 	time_t new_time;
+ 	struct tm *lt;
+ 	const char *dot, *t, *op;
+@@ -535,7 +535,11 @@
+ 	struct utmpx utx;
+ 	memset(&utx, 0, sizeof(utx));
+ 	utx.ut_type = OLD_TIME;
++	utx_tv.tv_sec = utx.ut_tv.tv_sec;
++	utx_tv.tv_usec = utx.ut_tv.tv_usec;
+-	(void)gettimeofday(&utx.ut_tv, NULL);
++	(void)gettimeofday(&utx_tv, NULL);
++	utx.ut_tv.tv_sec = utx_tv.tv_sec;
++	utx.ut_tv.tv_usec = utx_tv.tv_usec;
+ 	pututxline(&utx);
+ 
+ 	if (nflag || netsettime(new_time)) {
+@@ -555,7 +559,11 @@
+ 		logwtmp("{", "date", "");
+ 	}
+ 	utx.ut_type = NEW_TIME;
++	utx_tv.tv_sec = utx.ut_tv.tv_sec;
++	utx_tv.tv_usec = utx.ut_tv.tv_usec;
+-	(void)gettimeofday(&utx.ut_tv, NULL);
++	(void)gettimeofday(&utx_tv, NULL);
++	utx.ut_tv.tv_sec = utx_tv.tv_sec;
++	utx.ut_tv.tv_usec = utx_tv.tv_usec;
+ 	pututxline(&utx);
+ 
+ 	if ((p = getlogin()) == NULL)

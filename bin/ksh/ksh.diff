@@ -1,0 +1,53 @@
+--- ksh/c_ksh.c	2026-11-12 20:55:48.058689807 -0500
++++ nksh/c_ksh.c	2026-11-12 21:44:39.139174716 -0500
+@@ -1097,11 +1097,13 @@
+ 		}
+ 	wp += builtin_opt.optind;
+ 	if (Zflag) {
++#if 0
+ 		if (*wp && **wp) {
+ 			setproctitle("%s", *wp);
+ 		} else {
+ 			setproctitle(NULL);
+ 		}
++#endif
+ 		return 0;
+ 	}
+ 	if (!*wp) {
+--- ksh/c_sh.c	2026-11-12 20:55:48.487699122 -0500
++++ nksh/c_sh.c	2026-11-12 21:45:18.484218520 -0500
+@@ -16,6 +16,10 @@
+ 
+ #include "sh.h"
+ 
++#ifndef CLK_TCK
++#define CLK_TCK	100
++#endif
++
+ static	char *clocktos ARGS((clock_t t));
+ 
+ 
+--- ksh/history.c	2026-11-12 20:55:48.764705136 -0500
++++ nksh/history.c	2026-11-12 21:51:10.582054259 -0500
+@@ -753,7 +753,7 @@
+   else
+     hp = histlist;
+ 
+-  if ((fd = open(hname, O_WRONLY | O_CREAT | O_TRUNC | O_EXLOCK, 0600)) != -1) {
++  if ((fd = open(hname, O_WRONLY | O_CREAT | O_TRUNC, 0600)) != -1) {
+     /* Remove anything written before we got the lock */
+     ftruncate(fd, 0);
+     if ((fh = fdopen(fd, "w")) != NULL) {
+--- ksh/trap.c	2026-11-12 20:55:48.896708002 -0500
++++ nksh/trap.c	2026-11-12 21:51:46.751417079 -0500
+@@ -35,8 +35,8 @@
+ 
+ 	/* Use system description, if available, for unknown signals... */
+ 	for (i = 0; i < NSIG; i++)
+-		if (!sigtraps[i].name && sys_siglist[i] && sys_siglist[i][0])
+-			sigtraps[i].mess = sys_siglist[i];
++		if (!sigtraps[i].name && signalname(i))
++			sigtraps[i].mess = signalname(i);
+ #endif	/* HAVE_SYS_SIGLIST */
+ 
+ 	sigemptyset(&Sigact_ign.sa_mask);

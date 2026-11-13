@@ -1,9 +1,7 @@
-SUBDIR=libcompat src
-
-export TOPDIR := $(shell pwd)
+SUBDIR=lib bin sbin usr.sbin games
 
 CPPFLAGS=-I$(CURDIR)/include -Dlint -D_GNU_SOURCE
-LDFLAGS=-L$(CURDIR)/libcompat -lcompat
+LDFLAGS=-L$(CURDIR)/lib/libcompat -lcompat
 CFLAGS=
 
 DESTDIR ?=

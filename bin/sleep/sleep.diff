@@ -1,0 +1,23 @@
+--- sleep/sleep.c	2026-11-13 05:54:32.610488832 -0500
++++ sleep/sleep.c	2026-11-13 05:56:42.226852563 -0500
+@@ -133,8 +133,10 @@
+ 		 * (but only if that is the potential problem)
+ 		 */
+ 		val = strtod(arg, &temp);
++#if 0
+ 		if (*temp != '\0')
+ 			val = strtod_l(arg, &temp, LC_C_LOCALE);
++#endif
+ 		if (val < 0 || temp == arg || *temp != '\0')
+ 			usage();
+ 
+@@ -183,7 +185,7 @@
+ 	    endtime.tv_nsec <= now.tv_nsec))
+ 		errx(EXIT_FAILURE, "cannot sleep beyond the end of time");
+ 
+-	signal(SIGINFO, report_request);
++	signal(SIGUSR1, report_request);
+ 	for (;;) {
+ 		int e;
+ 
+
