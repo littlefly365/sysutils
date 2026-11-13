@@ -1,9 +1,9 @@
-SUBDIR=	base64 basename cat chmod chown chroot comm csplit cut \
-	date dir dirname du echo env expr factor false fold \
-	head hostname id link logname mkdir mkfifo mknod mktemp \
-	nproc paste printenv pwd realpath rmdir sleep split stat \
-	sync tee test touch tr true tty uname uniq unlink users \
-	vdir wc who yes
+SUBDIR=	base64 basename cat chmod chown chroot comm csplit \
+	cut date dir dirname du echo env expr factor false fold \
+	head hostname id link ln logname mkdir mkfifo mknod \
+	mktemp nproc paste printenv pwd realpath rmdir sleep \
+	split stat sync tee test touch tr true tty uname uniq \
+	unlink users vdir wc who yes
 
 all:
 	@$(foreach dir,$(SUBDIR),$(MAKE) -C $(dir) all &&) :
