@@ -12,7 +12,7 @@
   */
  const struct cchar cchars1[] = {
  	{ "discard",	VDISCARD, 	CDISCARD },
-+#ifdef VDSUSP
++#if 0
  	{ "dsusp", 	VDSUSP,		CDSUSP },
 +#endif
  	{ "eof",	VEOF,		CEOF },
@@ -22,30 +22,17 @@
  	{ "quit",	VQUIT,		CQUIT },
  	{ "reprint",	VREPRINT, 	CREPRINT },
  	{ "start",	VSTART,		CSTART },
-+#ifdef VSTATUS
++#if 0
  	{ "status",	VSTATUS, 	CSTATUS },
 +#endif
  	{ "stop",	VSTOP,		CSTOP },
  	{ "susp",	VSUSP,		CSUSP },
  	{ "time",	VTIME,		CTIME },
  	{ "werase",	VWERASE,	CWERASE },
-+#ifdef VSWTC
 +	{ "swtc",	VSWTC,		CEOL },
-+#endif
  	{ .name = NULL },
  };
  
---- stty/GNUmakefile	2026-11-13 20:00:45.718150005 -0500
-+++ stty/GNUmakefile	2026-11-13 20:06:42.791596999 -0500
-@@ -8,7 +8,7 @@
- $(TARGET): $(OBJS)
- 	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS)
- %.o: %.c
--	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS) -Wno-string-plus-int
-+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS)
- install:
- 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
- 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/$(MAN)
 --- stty/key.c	2026-11-13 19:59:29.439891267 -0500
 +++ stty/key.c	2026-11-13 20:18:59.650453028 -0500
 @@ -209,7 +209,7 @@
@@ -78,7 +65,7 @@
  void
  f_ostart(struct info *ip)
  {
-+#ifdef TIOCSTART
++#if 0
  	if (ioctl (0, TIOCSTART) < 0)
  		err(1, "TIOCSTART");
 +#endif
@@ -87,7 +74,7 @@
  void
  f_ostop(struct info *ip)
  {
-+#ifdef TIOCSTOP
++#if 0
  	if (ioctl (0, TIOCSTOP) < 0)
  		err(1, "TIOCSTOP");
 +#endif
@@ -98,10 +85,8 @@
  	{ "hup",	HUPCL },
  	{ "clocal",	CLOCAL },
  	{ "crtscts",	CRTSCTS },
-+#ifdef MDMBUF
++#if 0
  	{ "mdmbuf",	MDMBUF },
-+#endif
-+#ifdef CDTRCTS
  	{ "cdtrcts",	CDTRCTS },
 +#endif
  	{ .name = NULL },
@@ -120,7 +105,7 @@
  	{ "tostop",	TOSTOP },
  	{ "flusho",	FLUSHO },
  	{ "pendin",	PENDIN },
-+#ifdef NOKERNINFO
++#if 0
  	{ "nokerninfo",	NOKERNINFO },
 +#endif
  	{ .name = NULL },
@@ -130,7 +115,7 @@
  	{ "-crt",	ECHOK, ECHOE|ECHOKE|ECHOCTL },
  	{ "newcrt",	ECHOE|ECHOKE|ECHOCTL, ECHOK|ECHOPRT },
  	{ "-newcrt",	ECHOK, ECHOE|ECHOKE|ECHOCTL },
-+#ifdef NOKERNINFO
++#if 0
  	{ "kerninfo",	0, NOKERNINFO },
  	{ "-kerninfo",	NOKERNINFO, 0 },
 +#endif
@@ -141,7 +126,7 @@
  	{ "opost",	OPOST },
  	{ "onlcr",	ONLCR },
  	{ "ocrnl",	OCRNL },
-+#ifdef OXTABS
++#if 0
  	{ "oxtabs",	OXTABS },
 +#endif
  	{ "onocr",	ONOCR },
@@ -151,7 +136,7 @@
  const struct specialmodes ospecialmodes[] = {
  	{ "litout",	0, OPOST },
  	{ "-litout",	OPOST, 0 },
-+#ifdef OXTABS
++#if 0
  	{ "tabs",	0, OXTABS },		/* "preserve" tabs */
  	{ "-tabs",	OXTABS, 0 },
 +#endif
@@ -178,7 +163,7 @@
  	put("-tostop", TOSTOP, 0);
  	put("-flusho", FLUSHO, 0);
  	put("-pendin", PENDIN, 0);
-+#ifdef NOKERNINFO
++#if 0
  	put("-nokerninfo", NOKERNINFO, 0);
 +#endif
  	put("-extproc", EXTPROC, 0);
@@ -188,7 +173,7 @@
  	put("-opost", OPOST, 1);
  	put("-onlcr", ONLCR, 1);
  	put("-ocrnl", OCRNL, 0);
-+#ifdef OXTABS
++#if 0
  	put("-oxtabs", OXTABS, 1);
 +#endif
  	put("-onocr", ONOCR, 0);
@@ -198,12 +183,9 @@
  	put("-clocal", CLOCAL, 0);
  	put("-cstopb", CSTOPB, 0);
  	put("-crtscts", CRTSCTS, 0);
-+#ifdef MDMBUF
++#if 0
  	put("-mdmbuf", MDMBUF, 0);
-+#endif
-+#ifdef CDTRCTS
  	put("-cdtrcts", CDTRCTS, 0);
--
 +#endif
  	/* special control characters */
  	cc = tp->c_cc;
