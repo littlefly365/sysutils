@@ -162,8 +162,9 @@ for i in ${BIN_CMDS} ${SBIN_CMDS} ${USR_BIN_CMDS} ${USR_SBIN_CMDS} ${GAMES_CMDS}
 	copy "${i}"
 done
 
-# remove unused files
+# remove unused files/directories
 rm -rf bin/test/TEST.csh
+rm -rf usr.bin/calendar/calendars/CVS
 
 # clean source tree
 cd ${CWD}
