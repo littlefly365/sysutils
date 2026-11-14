@@ -78,6 +78,7 @@ bin/mkdir
 bin/pwd
 bin/rmdir
 bin/sleep
+bin/stty
 bin/sync
 bin/test
 "

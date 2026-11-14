@@ -1,5 +1,5 @@
 SUBDIR=	cat chmod date domainname echo expr hostname ksh ln mkdir \
-	pwd rmdir sleep sync test
+	pwd rmdir sleep stty sync test
 
 all:
 	@$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) all &&) :
