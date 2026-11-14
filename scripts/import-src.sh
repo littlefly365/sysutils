@@ -7,8 +7,6 @@
 # Note 1: dir, vdir, sw_vers and nproc are not in the lists, because
 # they don't come from NetBSD. (they were made from scratch)
 #
-# Note 2: diff and diff3 use individual scripts
-#
 
 set -e
 
@@ -162,10 +160,11 @@ for i in ${BIN_CMDS} ${SBIN_CMDS} ${USR_BIN_CMDS} ${USR_SBIN_CMDS} ${GAMES_CMDS}
 	copy "${i}"
 done
 
+cd ${CWD}
+
 # remove unused files/directories
 rm -rf bin/test/TEST.csh
-rm -rf usr.bin/calendar/calendars/CVS
+rm -rf usr.bin/calendar/calendars/CVS/
 
 # clean source tree
-cd ${CWD}
 rm -rf ${TMPDIR}

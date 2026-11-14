@@ -15,4 +15,6 @@ install:
 	@$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) install &&) :
 clean:
 	@$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) clean &&) :
+import:
+	@./scripts/import-src.sh
 .PHONY: all install clean
