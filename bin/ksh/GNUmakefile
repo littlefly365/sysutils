@@ -11,7 +11,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS)
 %.o: %.c
-	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS) \
+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS) \
 		-Wno-old-style-definition -include time.h
 install: $(MAN)
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)

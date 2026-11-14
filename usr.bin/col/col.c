@@ -160,7 +160,7 @@ main(int argc, char **argv)
 			max_bufd_lines = (int)strtonum(optarg, 1,
 			    (INT_MAX - BUFFER_MARGIN) / 2, &errstr) * 2;
 			if (errstr != NULL)
-				err(EXIT_FAILURE, "bad -l argument `%s'",
+				errx(EXIT_FAILURE, "bad -l argument `%s'",
 				    optarg);
 			break;
 		case 'p':		/* pass unknown control sequences */

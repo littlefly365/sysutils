@@ -52,7 +52,6 @@ __RCSID("$NetBSD: who.c,v 1.25 2015/11/21 15:01:43 christos Exp $");
 #include <locale.h>
 #include <pwd.h>
 #include <stdio.h>
-#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>

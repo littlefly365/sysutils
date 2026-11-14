@@ -1,4 +1,4 @@
-SUBDIR=	factor primes
+SUBDIR=	banner factor primes
 
 all:
 	@$(foreach dir, $(SUBDIR), $(MAKE) -C $(dir) all &&) :

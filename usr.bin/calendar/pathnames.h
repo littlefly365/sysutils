@@ -33,6 +33,6 @@
 
 #include <paths.h>
 
-#define	_PATH_CPP	"/usr/bin/cpp"
+#define	_PATH_CPP	"/usr/bin/tradcpp"
 #define	_PATH_CALENDARS	"/usr/share/calendar"
 #define _PATH_SYSTEM_CALENDAR	"/etc/calendar"

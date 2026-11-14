@@ -1,4 +1,4 @@
-SUBDIR=lib bin sbin usr.sbin games
+SUBDIR=lib bin sbin usr.bin usr.sbin games
 
 CPPFLAGS=-I$(CURDIR)/include -Dlint -D_GNU_SOURCE
 LDFLAGS=-L$(CURDIR)/lib/libcompat -lcompat

@@ -8,7 +8,8 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS)
 %.o: %.c
-	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS)
+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS) \
+	-include sys/file.h -include stdarg.h -D'TIMER_RELTIME=0'
 install:
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/$(MAN)

@@ -8,7 +8,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS)
 %.o: %.c
-	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS) -DSUPPORT_UTMP -DSUPPORT_UTMPX
+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS) -DSUPPORT_UTMP -DSUPPORT_UTMPX
 install:
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man1/$(MAN)

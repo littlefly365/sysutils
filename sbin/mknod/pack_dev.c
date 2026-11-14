@@ -38,7 +38,6 @@
 __RCSID("$NetBSD: pack_dev.c,v 1.12 2013/06/14 16:28:20 tsutsui Exp $");
 #endif /* not lint */
 
-#include <sys/sysmacros.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 

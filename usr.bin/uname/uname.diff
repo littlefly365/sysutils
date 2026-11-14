@@ -1,0 +1,27 @@
+--- uname/uname.c	2026-11-13 18:48:08.205830876 -0500
++++ uname/uname.c	2026-11-13 18:47:45.793214952 -0500
+@@ -41,6 +41,7 @@
+ #include <locale.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
+ #include <unistd.h>
+ #include <err.h>
+ 
+@@ -113,12 +114,16 @@
+ 		/* NOTREACHED */
+ 	}
+ 	if (print_mask & PRINT_MACHINE_ARCH) {
++#if 0
+ 		int mib[2] = { CTL_HW, HW_MACHINE_ARCH };
+ 		size_t len = sizeof (machine_arch);
+ 
+ 		if (sysctl(mib, sizeof (mib) / sizeof (mib[0]), machine_arch,
+ 		    &len, NULL, 0) < 0)
+ 			err(EXIT_FAILURE, "sysctl");
++#else
++		memcpy(machine_arch, "unknown", sizeof(machine_arch));
++#endif
+ 	}
+ 
+ 	if (print_mask & PRINT_SYSNAME) {

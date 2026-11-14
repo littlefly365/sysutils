@@ -1,0 +1,15 @@
+--- du/du.c	2026-11-13 18:23:23.318319020 -0500
++++ du/du.c	2026-11-13 18:25:01.629611749 -0500
+@@ -202,10 +202,12 @@
+ 				/* nothing */
+ 				break;
+ 			default:
++#if 0
+ 				if (p->fts_statp->st_flags & UF_NODUMP) {
+ 					fts_set(fts, p, FTS_SKIP);
+ 					continue;
+ 				}
++#endif
+ 			}
+ 		}
+ 		switch (p->fts_info) {

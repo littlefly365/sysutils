@@ -51,7 +51,6 @@ __RCSID("$NetBSD: id.c,v 1.32 2011/09/16 15:39:26 joerg Exp $");
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <inttypes.h>
 
 static void current(void);
 static void pretty(struct passwd *);

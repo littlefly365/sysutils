@@ -8,7 +8,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS)
 %.o: %.c
-	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS)
+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS)
 install:
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 	ln -sf $(TARGET) $(DESTDIR)$(PREFIX)/bin/which

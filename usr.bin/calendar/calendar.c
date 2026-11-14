@@ -55,7 +55,6 @@ __RCSID("$NetBSD: calendar.c,v 1.54 2022/09/19 18:48:30 christos Exp $");
 #include <errno.h>
 #include <fcntl.h>
 #include <pwd.h>
-#include <grp.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -460,7 +459,7 @@ opencal(FILE **in)
 			err(EXIT_FAILURE, "Cannot restrict cpp");
 		cpp_restricted = true;
 
-		(void)execl(_PATH_CPP, "cpp", "-traditional", "-P", "-I.",
+		(void)execl(_PATH_CPP, "tradcpp", "-nostdinc", "-I.",
 		    "-I" _PATH_CALENDARS, NULL);
 		err(EXIT_FAILURE, "Cannot exec `%s'", _PATH_CPP);
 		/*NOTREACHED*/

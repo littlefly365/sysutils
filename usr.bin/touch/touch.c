@@ -61,7 +61,6 @@ __RCSID("$NetBSD: touch.c,v 1.40 2024/02/10 00:19:30 kre Exp $");
 #include <unistd.h>
 #include <util.h>
 #include <getopt.h>
-#include <stddef.h>
 
 static void	stime_arg0(const char *, struct timespec *);
 static void	stime_arg1(char *, struct timespec *);
@@ -94,7 +93,7 @@ main(int argc, char *argv[])
 	struct timespec ts[2];
 	int aflag, cflag, Dflag, hflag, mflag, ch, fd, len, rval, timeset;
 	char *p;
-	int flag;
+	int flag = 0;
 	int (*get_file_status)(const char *, struct stat *);
 
 	setlocale(LC_ALL, "");
@@ -156,7 +155,6 @@ main(int argc, char *argv[])
 		flag = AT_SYMLINK_NOFOLLOW;
 		get_file_status = lstat;
 	} else {
-		flag = 0;
 		get_file_status = stat;
 	}
 
@@ -200,13 +198,13 @@ main(int argc, char *argv[])
 				continue;
 		}
 		if (!aflag)
-			ts[0] = sb.st_atim;
+			ts[0] = sb.st_atimespec;
 		if (!mflag)
-			ts[1] = sb.st_mtim;
+			ts[1] = sb.st_mtimespec;
 
 		if (Dflag &&
-		    timespeccmp(&ts[0], &sb.st_atim, ==) &&
-		    timespeccmp(&ts[1], &sb.st_mtim, ==))
+		    timespeccmp(&ts[0], &sb.st_atimespec, ==) &&
+		    timespeccmp(&ts[1], &sb.st_mtimespec, ==))
 			continue;
 
 		/* Try utimes(2). */
@@ -356,8 +354,8 @@ stime_file(const char *fname, struct timespec *tsp,
 
 	if (statfunc(fname, &sb))
 		err(1, "%s", fname);
-	tsp[0] = sb.st_atim;
-	tsp[1] = sb.st_mtim;
+	tsp[0] = sb.st_atimespec;
+	tsp[1] = sb.st_mtimespec;
 }
 
 static int

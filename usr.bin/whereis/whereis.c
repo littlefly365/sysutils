@@ -44,6 +44,7 @@ __RCSID("$NetBSD: whereis.c,v 1.22 2025/06/01 15:45:31 jschauma Exp $");
 
 #include <sys/param.h>
 #include <sys/stat.h>
+#include <sys/sysctl.h>
 
 #include <err.h>
 #include <paths.h>
@@ -97,11 +98,24 @@ main(int argc, char *argv[])
  		if ((std = getenv("PATH")) == NULL)
  			errx(1, "PATH environment variable is not set");
 	} else {
+		/* Retrieve the standard path. */
+#if 0
+		mib[0] = CTL_USER;
+		mib[1] = USER_CS_PATH;
+		if (sysctl(mib, 2, NULL, &len, NULL, 0) == -1)
+			err(1, "sysctl: user.cs_path");
+		if (len == 0)
+			errx(1, "sysctl: user.cs_path (zero length)");
+		if ((std = malloc(len)) == NULL)
+			err(1, NULL);
+		if (sysctl(mib, 2, std, &len, NULL, 0) == -1)
+			err(1, "sysctl: user.cs_path");
+#else
 		len = strlen(_PATH_STDPATH);
 		if ((std = malloc(len)) == NULL)
 			err(1, NULL);
-
 		memcpy(std, _PATH_STDPATH, len);
+#endif
 	}
 
 	/* For each path, for each program... */
@@ -144,10 +158,7 @@ main(int argc, char *argv[])
 				break; /* next argv */
 		}
 	}
-
-	if (!useenvpath)
-		free(std);
-
+	
 	return ((found == 0) ? 3 : ((found >= argc) ? 0 : 2));
 }
 

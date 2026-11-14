@@ -47,7 +47,6 @@ __RCSID("$NetBSD: env.c,v 1.25 2025/02/09 14:25:26 kre Exp $");
 #include <stdlib.h>
 #include <unistd.h>
 #include <locale.h>
-#include <stddef.h>
 #include <errno.h>
 #include <paths.h>
 

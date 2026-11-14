@@ -1,0 +1,41 @@
+--- touch/touch.c	2026-11-13 18:25:58.699828995 -0500
++++ touch/touch.c	2026-11-13 18:39:23.242914811 -0500
+@@ -93,7 +93,7 @@
+ 	struct timespec ts[2];
+ 	int aflag, cflag, Dflag, hflag, mflag, ch, fd, len, rval, timeset;
+ 	char *p;
+-	int (*change_file_times)(const char *, const struct timespec *);
++	int flag = 0;
+ 	int (*get_file_status)(const char *, struct stat *);
+ 
+ 	setlocale(LC_ALL, "");
+@@ -152,10 +152,9 @@
+ 
+ 	if (hflag) {
+ 		cflag = 1;		/* Don't create new file */
+-		change_file_times = lutimens;
++		flag = AT_SYMLINK_NOFOLLOW;
+ 		get_file_status = lstat;
+ 	} else {
+-		change_file_times = utimens;
+ 		get_file_status = stat;
+ 	}
+ 
+@@ -209,7 +208,7 @@
+ 			continue;
+ 
+ 		/* Try utimes(2). */
+-		if (!(*change_file_times)(*argv, ts))
++		if (!utimensat(AT_FDCWD, *argv, ts, flag))
+ 			continue;
+ 
+ 		/* If the user specified a time, nothing else we can do. */
+@@ -224,7 +223,7 @@
+ 		 * The permission checks are different, too, in that the
+ 		 * ability to write the file is sufficient.  Take a shot.
+ 		 */
+-		 if (!(*change_file_times)(*argv, NULL))
++		if (!utimensat(AT_FDCWD, *argv, NULL, flag))
+ 			continue;
+ 
+ 		rval = EXIT_FAILURE;

@@ -9,4 +9,10 @@ void *erealloc(void *, size_t);
 char *estrndup(const char *, size_t);
 time_t parsedate(const char *, const time_t *, const int *);
 
+static int __attribute__((unused))
+raise_default_signal(int sig)
+{
+	return 0;
+}
+
 #endif

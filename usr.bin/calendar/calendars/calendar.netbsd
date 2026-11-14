@@ -78,7 +78,6 @@
 07/22   NetBSD 1.5.3 released, 2002
 07/24   NetBSD 3.0.1 released, 2006
 07/25   NetBSD/mvme68k port started, 1995
-07/30   NetBSD 11.0 released, 2026
 08/02   NetBSD 5.0.1 released, 2009
 08/02   NetBSD/vax port started, 1994
 08/04   NetBSD 9.3 released, 2022
@@ -112,7 +111,6 @@
 10/16   NetBSD/playstation2 port started, 2001
 10/17   NetBSD 6.0 released, 2012
 10/18	NetBSD 9.1 released, 2020
-10/20	NetBSD/mac68ksf port started, 2025
 10/21   NetBSD 7.0.2 released, 2016
 10/26   NetBSD 1.0 released, 1994
 10/30   pkgsrc/Darwin support added, 2001

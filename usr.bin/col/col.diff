@@ -1,0 +1,26 @@
+--- col/col.c	2026-11-13 18:20:18.317982845 -0500
++++ col/col.c	2026-11-13 18:22:01.712806131 -0500
+@@ -139,7 +139,7 @@
+ 	int this_line;			/* line l points to */
+ 	int nflushd_lines;		/* number of lines that were flushed */
+ 	int adjust, opt, warned, width;
+-	int e;
++	const char *errstr;
+ 
+ 	(void)setlocale(LC_CTYPE, "");
+ 
+@@ -157,10 +157,10 @@
+ 			compress_spaces = 1;
+ 			break;
+ 		case 'l':		/* buffered line count */
+-			max_bufd_lines = (int)strtoi(optarg, NULL, 0, 1,
+-			    (INT_MAX - BUFFER_MARGIN) / 2, &e) * 2;
+-			if (e)
+-				errc(EXIT_FAILURE, e, "bad -l argument `%s'",
++			max_bufd_lines = (int)strtonum(optarg, 1,
++			    (INT_MAX - BUFFER_MARGIN) / 2, &errstr) * 2;
++			if (errstr != NULL)
++				errx(EXIT_FAILURE, "bad -l argument `%s'",
+ 				    optarg);
+ 			break;
+ 		case 'p':		/* pass unknown control sequences */

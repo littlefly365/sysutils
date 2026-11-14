@@ -41,9 +41,11 @@ __RCSID("$NetBSD: uname.c,v 1.11 2011/09/06 18:35:13 joerg Exp $");
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <err.h>
 
+#include <sys/sysctl.h>
 #include <sys/utsname.h>
 
 __dead static void usage(void);
@@ -62,6 +64,7 @@ int
 main(int argc, char **argv)
 {
 	struct utsname u;
+	char machine_arch[SYS_NMLN];
 	int c;
 	int space = 0;
 	int print_mask = 0;
@@ -110,6 +113,18 @@ main(int argc, char **argv)
 		err(EXIT_FAILURE, "uname");
 		/* NOTREACHED */
 	}
+	if (print_mask & PRINT_MACHINE_ARCH) {
+#if 0
+		int mib[2] = { CTL_HW, HW_MACHINE_ARCH };
+		size_t len = sizeof (machine_arch);
+
+		if (sysctl(mib, sizeof (mib) / sizeof (mib[0]), machine_arch,
+		    &len, NULL, 0) < 0)
+			err(EXIT_FAILURE, "sysctl");
+#else
+		memcpy(machine_arch, "unknown", sizeof(machine_arch));
+#endif
+	}
 
 	if (print_mask & PRINT_SYSNAME) {
 		space++;
@@ -133,7 +148,7 @@ main(int argc, char **argv)
 	}
 	if (print_mask & PRINT_MACHINE_ARCH) {
 		if (space++) putchar(' ');
-		fputs("unknown", stdout);
+		fputs(machine_arch, stdout);
 	}
 	putchar('\n');
 

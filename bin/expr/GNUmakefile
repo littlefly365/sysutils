@@ -9,7 +9,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS)
 %.o: %.c
-	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS)
+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS)
 $(SRCS): $(YSRCS)
 	byacc -o $@ $<
 install:

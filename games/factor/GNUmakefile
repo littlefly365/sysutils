@@ -10,7 +10,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS) -lcrypto -lcrypt
 %.o: %.c
-	$(CC) -c -o $@ $< $(CPPFLAGS) $(CPPFLAGS) $(FLAGS)
+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS) $(FLAGS)
 install:
 	install -Dm 755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
 	install -Dm 644 $(MAN) $(DESTDIR)$(PREFIX)/share/man/man6/$(MAN)

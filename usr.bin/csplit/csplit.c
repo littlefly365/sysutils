@@ -235,6 +235,7 @@ handlesig(int sig)
 	if (len < sizeof(msg))
 		(void)write(STDERR_FILENO, msg, len);
 	cleanup();
+	(void)raise_default_signal(sig);
 	_exit(2);
 }
 
@@ -387,7 +388,7 @@ do_rexp(const char *expr)
 	} else
 		ofs = 0;
 
-	if (regcomp(&cre, re, REG_NOSUB) != 0)
+	if (regcomp(&cre, re, REG_BASIC|REG_NOSUB) != 0)
 		errx(1, "%s: bad regular expression", re);
 
 	if (*expr == '/')

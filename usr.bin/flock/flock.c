@@ -33,13 +33,10 @@
 #include <sys/cdefs.h>
 __RCSID("$NetBSD: flock.c,v 1.12 2019/10/04 16:27:00 mrg Exp $");
 
-#include <sys/file.h>
-
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include <stdarg.h>
 #include <signal.h>
 #include <unistd.h>
 #include <err.h>
@@ -276,7 +273,7 @@ main(int argc, char *argv[])
 		if (timer_create(CLOCK_REALTIME, &ev, &tm) == -1)
 			err(EXIT_FAILURE, "timer_create");
 
-		if (timer_settime(tm, 0, &it, NULL) == -1)
+		if (timer_settime(tm, TIMER_RELTIME, &it, NULL) == -1)
 			err(EXIT_FAILURE, "timer_settime");
 
 		memset(&sa, 0, sizeof(sa));
